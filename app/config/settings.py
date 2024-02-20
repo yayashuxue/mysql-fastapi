@@ -1,26 +1,31 @@
 import os
-
+from dotenv import load_dotenv
+from pydantic import Extra
 from pydantic_settings import BaseSettings
 
 
 class Settings(BaseSettings):
+
+    load_dotenv()
+
     # Security
     SECRET_KEY: str = os.environ.get("SECRET_KEY")
     HASHING_ALGORITHM: str = os.environ.get("HASHING_ALGORITHM")
 
     # DB Settings
-    POSTGRES_USER: str = os.environ.get("PGUSER")
-    POSTGRES_PASSWORD: str = os.environ.get("PGPASSWORD")
-    POSTGRES_SERVER: str = os.environ.get("PGHOST")
-    POSTGRES_PORT: int = os.environ.get("PGPORT")
-    POSTGRES_DB: str = os.environ.get("PGDATABASE")
+    DB_USER: str = os.environ.get("MYSQL_USER")
+    DB_PASSWORD: str = os.environ.get("MYSQL_PASSWORD")
+    DB_SERVER: str = os.environ.get("MYSQL_HOST")
+    DB_PORT: int = os.environ.get("MYSQL_PORT")
+    DB: str = os.environ.get("MYSQL_DATABASE")
 
     class Config:
         env_file = ".env"
+        extra = Extra.allow
 
     @property
     def POSTGRES_URL(self):
-        url = f"postgresql://{self.POSTGRES_USER}:{self.POSTGRES_PASSWORD}@{self.POSTGRES_SERVER}:{self.POSTGRES_PORT}/{self.POSTGRES_DB}"
+        url = f"mysql+pymysql://{self.DB_USER}:{self.DB_PASSWORD}@{self.DB_SERVER}:{self.DB_PORT}/{self.DB}"
         return url
 
 
