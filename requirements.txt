@@ -16,7 +16,6 @@ distlib==0.3.8
 dnspython==2.4.2
 docopt==0.6.2
 ecdsa==0.18.0
-email-validator==2.1.0.post1
 environs==10.3.0
 fastapi==0.103.0
 FastAPI-SQLAlchemy==0.2.1
@@ -51,10 +50,10 @@ pkce==1.0.3
 platformdirs==4.2.0
 pyasn1==0.5.0
 pycparser==2.21
-pydantic==2.3.0
+pydantic==2.5.2
 pydantic-extra-types==2.4.0
 pydantic-settings==2.0.3
-pydantic_core==2.6.3
+pydantic_core==2.14.5
 PyMySQL==1.1.0
 python-dateutil==2.8.2
 python-dotenv==1.0.0
