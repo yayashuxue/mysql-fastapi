@@ -1,6 +1,6 @@
-## Heavyweight(FastAPI) Starter Template for Large Applications
+## FastAPI Template With MYSQL
 
-This repository provides a robust template for creating powerful FastAPI applications that leverage Postgres and Alembic. Inspired by [Radoslav Georgiev's Django Structure for Scale lecture](https://youtu.be/yG3ZdxBb1oo?si=D6A9dHyhKb_Kf-J7), this template offers a structured approach to building scalable web applications.
+FastAPI repository that uses MYSQL and Alembic. Inspired by [Grey-A Heavyweight FastAPI Template](https://github.com/Grey-A/heavyweight-fastapi).
 
 ### Project Structure
 
@@ -25,7 +25,10 @@ app/
 .gitignore
 alembic.ini
 env_sample.txt
-requirements.txt
+main.py
+poetry.toml
+railway.toml
+README.md
 ```
 
 ### Components
@@ -36,11 +39,15 @@ requirements.txt
 
 **env_sample.txt:** Sample environment variable list. Create a `.env` file and provide values.
 
+**main.py:** Entry point for the poetry run script.
+
 **config/:** Holds project settings.
+
 - **database.py:** Manages database connection, session settings, and the base database model.
 - **settings.py:** Utilizes pydantic_settings to load environment variables. Change the `SECRET_KEY` from the default value on Railway.
 
 **app/:** The main FastAPI project directory.
+
 - **main.py:** Entry point of the application, with a router linking to the `user/` module.
 - **dependencies.py:** Initializes the database session.
 - **user/:** Contains code and functionality related to users.
@@ -52,24 +59,41 @@ requirements.txt
 
 ### Getting Started
 
-1. Install dependencies:
+1. Setup Poetry
+
+   Create the poetry environment
+
    ```
-   pip install -r requirements.txt
+   poetry env use 3.11
    ```
 
-2. Create a `.env` file and input environment variables.
+   Start the poetry shell
 
-3. Initialize database tables:
+   ```
+   poetry shell
+   ```
+
+2. Install dependencies:
+
+   ```
+   poetry install
+   ```
+
+3. Create a `.env` file and input environment variables.
+
+4. Initialize database tables:
+
    ```
    alembic upgrade head
    ```
 
-4. Start the application in development mode:
+5. Start the application in development mode:
+
    ```
-   uvicorn app.main:app --reload
+   poetry run dev
    ```
 
-5. Test the application by making requests to endpoints.
+6. Test the application by making requests to endpoints.
 
 ### Contribute to the Project
 
@@ -79,10 +103,8 @@ We welcome contributions from the community to make this FastAPI Starter Templat
 - Submit pull requests to propose changes to the project.
 - Engage in discussions and share your thoughts on enhancements.
 
-By contributing, you help make this template more valuable for developers building FastAPI applications. Together, we can create a robust foundation for large-scale projects. Thank you for your support!
-
 For detailed information, refer to the following resources:
 
 - FastAPI documentation: https://fastapi.tiangolo.com/
 - Alembic documentation: https://alembic.sqlalchemy.org/en/latest/
-- Django Structure for Scale lecture: https://youtu.be/yG3ZdxBb1oo?si=D6A9dHyhKb_Kf-J7
+- Poetry documentation: https://python-poetry.org/docs/
