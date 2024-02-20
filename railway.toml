@@ -1,9 +1,6 @@
 [build]
 builder = "NIXPACKS"
 
-[phases.setup]
-aptPkgs = ["...", "python3-dev default-libmysqlclient-dev build-essential"]
-
 [deploy]
 startCommand = "alembic upgrade head && uvicorn app.main:app --host 0.0.0.0 --port $PORT"
 numReplicas = 1

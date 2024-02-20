@@ -1,5 +1,6 @@
 from fastapi import Depends, FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+import uvicorn
 
 from app.dependencies import get_db
 from app.example_module.apis import router as example_router
@@ -7,7 +8,9 @@ from app.example_module.apis import router as example_router
 app = FastAPI(
     title="Heavyweight(FastAPI)",
     docs_url="/",
-    swagger_ui_parameters={"defaultModelsExpandDepth": -1}, # Hides Schemas Menu in DocsF
+    swagger_ui_parameters={
+        "defaultModelsExpandDepth": -1
+    },  # Hides Schemas Menu in DocsF
 )
 
 # Variables
@@ -21,6 +24,10 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# def dev():
+#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
 
 
 # Health Check
