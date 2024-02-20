@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     HASHING_ALGORITHM: str = os.environ.get("HASHING_ALGORITHM")
 
     # DB Settings
+    print(os.environ)
     DB_USER: str = os.environ.get("MYSQLUSER")
     DB_PASSWORD: str = os.environ.get("MYSQLPASSWORD")
     DB_SERVER: str = os.environ.get("MYSQLHOST")
