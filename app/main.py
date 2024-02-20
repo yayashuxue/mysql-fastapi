@@ -4,6 +4,7 @@ import uvicorn
 
 from app.dependencies import get_db
 from app.example_module.apis import router as example_router
+from app.users.apis import router as user_router
 
 app = FastAPI(
     title="Heavyweight(FastAPI)",
@@ -26,10 +27,6 @@ app.add_middleware(
 )
 
 
-# def dev():
-#     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
-
-
 # Health Check
 @app.get("/health", status_code=200, include_in_schema=False)
 def health_check(db=Depends(get_db)):
@@ -39,3 +36,4 @@ def health_check(db=Depends(get_db)):
 
 # Routers
 app.include_router(example_router, prefix="/example", tags=["Example Docs"])
+app.include_router(user_router, prefix="/users", tags=["User Docs"])
