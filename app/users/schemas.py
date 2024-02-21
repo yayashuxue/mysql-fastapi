@@ -15,3 +15,7 @@ class UserCreate(BaseUser):
 class User(BaseUser):
     id: int = Field(description="user id", examples=[1])
     created: datetime = Field(description="created")
+
+
+# class UserList(list[BaseUser]):
+#     pass

@@ -1,16 +1,17 @@
+from sqlalchemy import text
 from sqlalchemy.orm import Session
 
 from app.users import models
 
 
-def get_user(db: Session):
-    """This function returns a user obj from the database
+def get_users(db: Session):
+    """This function returns a list of users from the database
 
     Args:
-        email (str): The user's email
         db (Session): The DB session
 
     Returns:
-        models.User: The user obj
+        list[models.User]: The user obj list
     """
-    return db.query(models.User).first()
+
+    return db.query(models.User).all()

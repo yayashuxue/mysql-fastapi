@@ -8,9 +8,9 @@ router = APIRouter()
 
 
 # GET
-@router.get("/", summary="list users", response_model=schemas.User)
-def list_users(db=Depends(get_db)):
-    return selectors.get_user(db=db)
+@router.get("/", summary="list users", response_model=list[schemas.User])
+async def list_users(db=Depends(get_db)):
+    return selectors.get_users(db=db)
 
 
 # POST
