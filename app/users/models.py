@@ -10,12 +10,10 @@ from sqlalchemy import (
 from app.config.database import DBBase
 
 
-class User(DBBase):
-    __tablename__ = "users"
+class UserBalances(DBBase):
+    __tablename__ = "user_balances"
 
-    id = Column(Integer, primary_key=True)
-    first_name = Column(String(20), nullable=False)
-    last_name = Column(String(20), nullable=False)
-    email = Column(String(120), nullable=False, unique=True)
-
-    created = Column(DateTime, default=datetime.now())
+    address = Column(String(255), primary_key=True)
+    onChainBal = Column(String(255), nullable=False)
+    localBal = Column(String(255), nullable=False)
+    inPlay = Column(String(255), nullable=False)

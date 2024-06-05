@@ -8,15 +8,15 @@ router = APIRouter()
 
 
 # GET
-@router.get("/", summary="list users", response_model=list[schemas.User])
+@router.get("/", summary="list user balnces", response_model=list[schemas.UserBalances])
 async def list_users(db=Depends(get_db)):
-    return selectors.get_users(db=db)
+    return selectors.get_users_balances(db=db)
 
 
 # POST
 @router.post(
     "/create",
-    summary="create user",
+    summary="create user balances",
     status_code=status.HTTP_201_CREATED,
     response_model=schemas.UserCreate,
 )

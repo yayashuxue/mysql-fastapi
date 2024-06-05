@@ -1,21 +1,11 @@
-from pydantic import BaseModel, Field
 from datetime import datetime
+from pydantic import BaseModel, Field
 
+class UserBalances(BaseModel):
+    address: str = Field(..., description="address", max_length=255)
+    onChainBal: str = Field(..., description="onChainBal", max_length=255)
+    localBal: str = Field(..., description="localBal", max_length=255)
+    inPlay: str = Field(..., description="inPlay", max_length=255)
 
-class BaseUser(BaseModel):
-    first_name: str = Field(description="first name", examples=["Bob"])
-    last_name: str = Field(description="last name", examples=["Ross"])
-    email: str = Field(description="email", examples=["happy_accidents@gmail.com"])
-
-
-class UserCreate(BaseUser):
+class UserCreate(UserBalances):
     created: datetime = Field(description="created")
-
-
-class User(BaseUser):
-    id: int = Field(description="user id", examples=[1])
-    created: datetime = Field(description="created")
-
-
-# class UserList(list[BaseUser]):
-#     pass
